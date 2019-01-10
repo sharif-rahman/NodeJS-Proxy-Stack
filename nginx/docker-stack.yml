@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+  app:
+    image: shariftest/testswarm:04
+    networks:
+      - nodenet
+    ports:
+      - 1080:1080
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+        window: 120s
+
+  proxy:
+    image: nginx
+    depends_on:
+      - app
+    environment:
+      - BALANCE=leastconn
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./nginx.cfg:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - nodenet
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  nodenet:
+    driver: overlay
+
+
+
+

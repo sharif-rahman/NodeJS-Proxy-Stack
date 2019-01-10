@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+
+  app:
+    image: shariftest/testswarm:04
+    networks:
+      - nodenet
+    environment:
+      - SERVICE_PORTS=1080
+    ports:
+      - "1080:1080"
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+        window: 120s
+
+  proxy:
+    image: dockercloud/haproxy
+    depends_on:
+      - app
+    environment:
+      - BALANCE=leastconn
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 80:80
+    networks:
+      - nodenet
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  nodenet:
+    driver: overlay
+
+
+
+
