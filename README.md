@@ -1,22 +1,11 @@
 # Current Page template layouting
+## Create the web app
+### Technologies and tools:
 
-
-
-
-Create the web app
-
-Technologies and tools:
-
+- Haproxy
+  - Proxy setup
+- nginx
+  - Proxy setup
 - Dockerfile 
   - Install the npm 
-- docker-compose
-  - Container creation 
-- main.sh
-  - runs the docker-compose
-  - checks the docker registery login
-  - It creates the Tag
-  - It pusshed the new images to registery.
-  
-# RUN the shell script
 
-./main.sh
