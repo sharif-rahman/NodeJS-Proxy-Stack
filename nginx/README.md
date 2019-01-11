@@ -3,7 +3,7 @@
 Create the Stack:
 Deploy the Stack by specifying the stack file and name of our stack
 
-``
+```
 # docker swarm init --advertise-addr <IP-Address>
 # docker stack deploy -c docker-stack.yml node
 ```
