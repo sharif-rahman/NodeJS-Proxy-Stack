@@ -36,7 +36,9 @@ Scale our Application down to 5 replica's
 
 Remove the Stack:
 
-``` #docker stack rm node 
+``` 
+#docker stack rm node 
+
 Removing service node_proxy
 Removing service node_app
 Removing network node_nodenet
