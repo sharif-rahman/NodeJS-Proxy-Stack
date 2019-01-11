@@ -1,6 +1,5 @@
 # Current Page template layouting
-## Create the web app
-### Technologies and tools:
+## Technologies and tools:
 
 - Haproxy
   - Proxy setup
